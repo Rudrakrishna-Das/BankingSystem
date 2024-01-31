@@ -8,28 +8,28 @@
   </head>
   <body>
     <!-- NAVIGATION -->
-    <header>
+    <div class="welcome_message">
+      <h4>WELCOME</h4>
+      <h6>TO</h6>
+      <h1>SAFE BANK</h1>
+    </div>
+    <header id="head">
       <nav>
-        <div class="welcome_message">
-          <h4>WELCOME</h4>
-          <h6>TO</h6>
-          <h1>SAFE BANK</h1>
-        </div>
         <ul class="navigation">
-          <div class="initial">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact Us</li>
-          </div>
-          <div class="login">
-            <li>Sign Up</li>
-          </div>
+          <li class="initial">
+            <a href="#home_section">Home</a>
+            <a href="#about_section">About</a>
+            <a href="#contact_section">Contact Us</a>
+          </li>
+          <li class="login">
+            <a href="/Frontend/Sign Up/index.html">Sign Up</a>
+          </li>
         </ul>
       </nav>
     </header>
     <!-- Home -->
     <main>
-      <section>
+      <section id="home_section">
         <div class="initial_message">
           <h1>World's Safest Bank</h1>
           <br />
@@ -39,11 +39,11 @@
           <br />
           <h4>No problem</h4>
           <br />
-          <h5>Just Sign Up</h5>
+          <h5><a href="/Frontend/Sign Up/index.html">Just Sign Up</a></h5>
         </div>
       </section>
       <!-- About -->
-      <section class="about_section">
+      <section id="about_section" class="about">
         <div class="about_part">
           <h1>Welcome to SAFE BANK</h1>
           <p>
@@ -76,23 +76,43 @@
       <!-- Sighn Up -->
       <section></section>
       <!-- Contact Us -->
-      <footer class="foot">
-        <div>
-          <div></div>
-          <div>
-            <div>
-              <p>&#x260E;</p>
-              <p>+915236548</p>
+      <footer id="contact_section" class="foot">
+        <div class="contact">
+          <form class="contact_form">
+            <div class="field_input">
+              <label for="name">Name</label>
+              <input id="name" type="text" />
             </div>
-            <div>
-              <p>&#x2709;</p>
-              <p>www.safebank@gmail.com</p>
+            <div class="field_input">
+              <label for="email">Email</label>
+              <input id="email" type="email" />
+            </div>
+            <div class="field_input">
+              <label for="message">Message</label>
+              <textarea
+                name="message"
+                id="message"
+                cols="33"
+                rows="4"
+              ></textarea>
+            </div>
+            <button class="send_button" type="submit">SEND</button>
+          </form>
+          <div class="details">
+            <div class="phone our_details">
+              <p class="icon">&#x260E;</p>
+              <p class="icon_details">+915236548</p>
+            </div>
+            <div class="mail our_details">
+              <p class="icon">&#x2709;</p>
+              <p class="icon_details">www.safebank@gmail.com</p>
             </div>
           </div>
         </div>
-        <div>
-          <p>&copy;This Website is made and designed by Rudra Krishna Das</p>
-        </div>
+
+        <p class="copy">
+          &copy;This Website is made and designed by Rudra Krishna Das
+        </p>
       </footer>
     </main>
   </body>
