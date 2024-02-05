@@ -4,22 +4,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>user</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- NAVIGATION -->
     <header id="head">
-        <nav>
-          <ul class="navigation">            
-            <li class="login">
-              <a href="http://127.0.0.1:5500/Frontend/index.html">Home</a>
-            </li>
-            <li class="login">
-              <a href="">Logout</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
+      <nav>
+        <ul class="navigation">
+          <li class="login">
+            <a href="http://127.0.0.1:5500/Frontend/index.html">Home</a>
+          </li>
+          <li class="login">
+            <a href="">Logout</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <!-- ACCOUNT DETAILS -->
+    <main id="acc_details">
+      <section id="personal">
+        <p>
+          Your Account Balance:- <span id="acc_balance" class="details">0</span>
+        </p>
+        <p id="greet">
+          Welcome <a href="" id="user_name" class="details">Name</a>
+        </p>
+      </section>
+
+      <!-- PASSBOOK -->
+
+      <section id="passbook">
+        <div id="transaction"></div>
+        <div id="functionality">
+          <!-- DEPOSIT -->
+
+          <div id="deposit" class="feature">
+            <h2>DEPOSIT</h2>
+            <form id="deposit_form" class="function_form">
+              <input type="number" min="1" max="150000" placeholder="Deposit" />
+              <button>Deposit</button>
+            </form>
+          </div>
+
+          <!-- WITHDRAW -->
+
+          <div id="withdraw" class="feature">
+            <h2>WITHDRAW</h2>
+            <form id="withdraw_form" class="function_form">
+              <input
+                type="number"
+                min="1"
+                max="100000"
+                placeholder="withdraw"
+              />
+              <button>Withdraw</button>
+            </form>
+          </div>
+
+          <!-- TRANSFER -->
+
+          <div id="transfer" class="feature">
+            <h2>TRANSFER TO ANOTHER USER</h2>
+            <form id="transfer_form" class="function_form">
+              <input type="text" placeholder="Username" />
+              <button>Transfer</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

@@ -3,8 +3,17 @@ const signUpEmail = document.getElementById("email");
 const signUpPassword = document.getElementById("password");
 const signUpButton = document.getElementById("sign_up_button");
 const form = document.getElementsByTagName("form");
+const err = document.getElementById("erroe_message");
 
 const signUpUser = [];
+
+const generateAccountId = (email) => {
+  const randomNumber = Math.floor(
+    Math.random() * (10000000000 - 1111111111) + 1111111111
+  );
+  const partOfEmail = email.split("@");
+  return randomNumber + partOfEmail[0];
+};
 
 signUpButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -13,19 +22,18 @@ signUpButton.addEventListener("click", (e) => {
     !signUpEmail.value.trim().includes("@") ||
     signUpPassword.value.trim().length < 8
   ) {
-    const p = document.createElement("p");
-    p.innerHTML =
+    err.innerHTML =
       "Name should be atleast 2 character and Password should be atleast 8 characters long";
-    p.style.fontSize = "18px";
-    form[0].append(p);
   } else {
     const userDetails = {
-      id: Math.random() * 44444444,
+      acctId: generateAccountId(signUpEmail.value.trim()),
       userName: signUpName.value,
       email: signUpEmail.value,
       password: signUpPassword.value,
+      transaction: [],
+      balance: 0,
     };
-
+    console.log(userDetails);
     const findUser = signUpUser.find(
       (user) => user.email === signUpEmail.value
     );
