@@ -2,6 +2,7 @@ import os
 import jwt
 import bcrypt
 from db import DATABASE
+from bson import ObjectId
 from flask_cors import CORS
 from flask import Flask,jsonify,request
 from dotenv import find_dotenv,load_dotenv
@@ -55,14 +56,22 @@ def sign_in():
     user['_id'] = str(user['_id'])
     user['status'] = True
     user['token'] = token
-    return jsonify(user),200
+    return jsonify(user)
 
 #USER
-@app.route('/user/<user_id>',methods = ['GET'])
-def uesr_info(user_id):
-    print('id',user_id)
-    cookie = request.cookies.get('token')
-    print('cookie',cookie)
+@app.route('/user/<token>',methods = ['GET'])
+def uesr_info(token):
+    try:
+        decode = jwt.decode(token,os.getenv('SECRET_KEY'),os.getenv('ALGORITHM'))
+    except:
+        return jsonify(share_message(success=False,message='Unauthorized'))
+    
+    user =  col.user_collection.find_one({'_id':ObjectId(decode['id'])})
+    user['_id'] = str(user['_id'])
+    del user['password']
+    user['status'] = True
+    return jsonify(user)
+
 
 
 

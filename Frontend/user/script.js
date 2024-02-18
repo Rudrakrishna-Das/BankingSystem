@@ -1,11 +1,11 @@
 const mainURL = "http://localhost:5000/";
 
-const id = localStorage.getItem("id");
-const token = localStorage.getItem("token");
-document.cookie = `token=${token}`;
+const token = localStorage.getItem("token").replaceAll('"', "");
 
 const init = async () => {
-  const res = await fetch(`${mainURL}user/${id}`);
+  const res = await fetch(`${mainURL}user/${token}`);
   const data = await res.json();
+  console.log(data);
 };
+
 init();

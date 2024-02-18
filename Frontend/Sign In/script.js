@@ -22,9 +22,7 @@ signIn.addEventListener("click", async (e) => {
 
   const data = await res.json();
   if (data.status) {
-    localStorage.setItem("id", JSON.stringify(data._id));
     localStorage.setItem("token", JSON.stringify(data.token));
-    delete data.token;
     const dynamicURL = `http://127.0.0.1:5500/Frontend/user/index.html`;
     window.location.href = dynamicURL;
   }
