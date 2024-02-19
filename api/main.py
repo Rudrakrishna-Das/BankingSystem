@@ -60,7 +60,7 @@ def sign_in():
 
 #USER
 @app.route('/user/<token>',methods = ['GET'])
-def uesr_info(token):
+def user_info(token):
     try:
         decode = jwt.decode(token,os.getenv('SECRET_KEY'),os.getenv('ALGORITHM'))
     except:
@@ -70,6 +70,7 @@ def uesr_info(token):
     user['_id'] = str(user['_id'])
     del user['password']
     user['status'] = True
+    print(user)
     return jsonify(user)
 
 
