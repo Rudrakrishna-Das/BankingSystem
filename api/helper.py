@@ -1,3 +1,4 @@
+import jwt
 import random
 def generate_account_number ():
     return random.randint(1111111111,9999999999)
@@ -8,3 +9,10 @@ def share_message(success:bool,message:str):
         'message':message
     }
     return err_msg
+
+def verify_token(token,key,algo):
+    try:
+        decode = jwt.decode(token,key,algo)
+        return decode
+    except:
+        return False

@@ -6,7 +6,7 @@ from bson import ObjectId
 from flask_cors import CORS
 from flask import Flask,jsonify,request
 from dotenv import find_dotenv,load_dotenv
-from helper import generate_account_number,share_message
+from helper import generate_account_number,share_message,verify_token
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
@@ -17,6 +17,13 @@ CORS(app)
 
 # DATABASE CREATED
 col = DATABASE()
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', 'http://127.0.0.1:5500')
+    response.headers.add('Access-Control-Allow-Credentials', 'true')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type') 
+    return response
 
 
 # SIGN_UP
@@ -61,16 +68,14 @@ def sign_in():
 #USER
 @app.route('/user/<token>',methods = ['GET'])
 def user_info(token):
-    try:
-        decode = jwt.decode(token,os.getenv('SECRET_KEY'),os.getenv('ALGORITHM'))
-    except:
+    token_val = verify_token(token,os.getenv('SECRET_KEY'),os.getenv('ALGORITHM'))
+    if token_val == False:
         return jsonify(share_message(success=False,message='Unauthorized'))
     
-    user =  col.user_collection.find_one({'_id':ObjectId(decode['id'])})
+    user =  col.user_collection.find_one({'_id':ObjectId(token_val['id'])})
     user['_id'] = str(user['_id'])
     del user['password']
     user['status'] = True
-    print(user)
     return jsonify(user)
 
 

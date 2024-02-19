@@ -42,8 +42,14 @@
           <div id="deposit" class="feature">
             <h2>DEPOSIT</h2>
             <form id="deposit_form" class="function_form">
-              <input type="number" min="1" max="150000" placeholder="Deposit" />
-              <button>Deposit</button>
+              <input
+                id="deposit_val"
+                type="number"
+                min="1"
+                max="150000"
+                placeholder="Deposit"
+              />
+              <button id="deposit_button">Deposit</button>
             </form>
           </div>
 
@@ -53,12 +59,13 @@
             <h2>WITHDRAW</h2>
             <form id="withdraw_form" class="function_form">
               <input
+                id="withdraw_val"
                 type="number"
                 min="1"
                 max="100000"
-                placeholder="withdraw"
+                placeholder="Withdraw"
               />
-              <button>Withdraw</button>
+              <button id="withdraw_button">Withdraw</button>
             </form>
           </div>
 
@@ -67,8 +74,19 @@
           <div id="transfer" class="feature">
             <h2>TRANSFER TO ANOTHER USER</h2>
             <form id="transfer_form" class="function_form">
-              <input type="text" placeholder="Username" />
-              <button>Transfer</button>
+              <input
+                id="transfer_acc"
+                type="text"
+                placeholder="Account Number"
+              />
+              <input
+                id="transfer_val"
+                type="number"
+                min="1"
+                max="100000"
+                placeholder="Transfer Amount"
+              />
+              <button id="transfer_button">Transfer</button>
             </form>
           </div>
         </div>
