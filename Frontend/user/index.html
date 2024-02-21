@@ -12,11 +12,15 @@
       <nav>
         <ul class="navigation">
           <li>
-            <a href="">Logout</a>
+            <a id="logout_button" href="">Logout</a>
+            <a id="home_button" href="http://127.0.0.1:5500/Frontend/index.html"
+              >Home</a
+            >
           </li>
         </ul>
       </nav>
     </header>
+    <p id="home_message" class="mess"></p>
     <!-- ACCOUNT DETAILS -->
     <main id="acc_details">
       <section id="personal">
@@ -25,7 +29,7 @@
           <span id="acc_balance" class="details">0</span>
         </p>
         <p id="greet">
-          Welcome <a href="" id="user_name" class="details">Name</a>
+          Welcome <a href="" id="account_user_name" class="details">Name</a>
         </p>
       </section>
 
@@ -38,18 +42,19 @@
         </div>
         <div id="functionality">
           <!-- DEPOSIT -->
-
           <div id="deposit" class="feature">
             <h2>DEPOSIT</h2>
             <form id="deposit_form" class="function_form">
               <input
-                id="deposit_val"
+                id="deposit_value"
                 type="number"
                 min="1"
                 max="150000"
                 placeholder="Deposit"
+                required
               />
               <button id="deposit_button">Deposit</button>
+              <p id="deposit_message" class="mess"></p>
             </form>
           </div>
 
@@ -59,13 +64,15 @@
             <h2>WITHDRAW</h2>
             <form id="withdraw_form" class="function_form">
               <input
-                id="withdraw_val"
+                id="withdraw_value"
                 type="number"
                 min="1"
                 max="100000"
-                placeholder="Withdraw"
+                placeholder="withdraw"
+                required
               />
               <button id="withdraw_button">Withdraw</button>
+              <p id="withdraw_message" class="mess"></p>
             </form>
           </div>
 
@@ -75,18 +82,21 @@
             <h2>TRANSFER TO ANOTHER USER</h2>
             <form id="transfer_form" class="function_form">
               <input
-                id="transfer_acc"
-                type="text"
+                id="account_number"
+                type="number"
                 placeholder="Account Number"
+                required
               />
               <input
-                id="transfer_val"
+                id="transfer_value"
                 type="number"
                 min="1"
-                max="100000"
-                placeholder="Transfer Amount"
+                max="150000"
+                placeholder="Tansfer Value"
+                required
               />
               <button id="transfer_button">Transfer</button>
+              <p id="transfer_message" class="mess"></p>
             </form>
           </div>
         </div>

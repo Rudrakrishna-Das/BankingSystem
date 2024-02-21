@@ -12,17 +12,18 @@ signIn.addEventListener("click", async (e) => {
     email: email.value.trim(),
     password: password.value.trim(),
   };
-  const res = await fetch(`${mainURL}/sign-in`, {
+  const res = await fetch(`${mainURL}sign-in`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(formData),
   });
 
   const data = await res.json();
+  console.log(data);
   if (data.status) {
-    localStorage.setItem("token", JSON.stringify(data.token));
     const dynamicURL = `http://127.0.0.1:5500/Frontend/user/index.html`;
     window.location.href = dynamicURL;
   }
