@@ -25,6 +25,7 @@ body {
   position: sticky;
   top: 0;
   transition: all 0.5s;
+  z-index: 10;
 }
 
 .navigation {
@@ -107,16 +108,75 @@ body {
   margin-top: 6px;
   transition: all 0.6s ease-in;
 }
+#info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  margin-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  box-shadow: inset 1px 1px 8px 2px black;
+  position: sticky;
+  top: 0px;
+  backdrop-filter: blur(10px);
+  color: var(--blue);
+}
+
+#sort_button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--blue);
+  color: var(--yellow);
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+}
+#sort_button:hover {
+  background-color: rgb(47, 47, 247);
+}
 
 #transaction {
   height: 30rem;
   width: 60%;
-  padding-top: 25px;
+  padding: 3px 0;
+  padding-bottom: 35px;
   border-radius: 12px;
   text-align: center;
+  overflow-y: scroll;
   background-color: rgb(255, 255, 255, 0.6);
-  box-shadow: inset 1px 1px 12px 18px black;
+  box-shadow: inset 1px 1px 8px 10px black;
   transition: all 0.6s ease-in;
+  z-index: 0;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+#transaction::-webkit-scrollbar {
+  display: none; /*Hide scrollbar for Chrome, Safari and Opera*/
+}
+
+.transaction_details {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.2rem;
+  list-style: none;
+  font-size: 20px;
+  font-weight: 800;
+}
+table {
+  width: 100%;
+  padding: 1rem 1.5rem;
+}
+th {
+  font-size: 20px;
+  padding: 10px 0px; /* Add padding to the th elements */
+  border: 2px solid black;
+}
+td {
+  padding: 10px 0px; /* Add padding to the th elements */
+  border: 2px solid black;
 }
 
 #functionality {
@@ -208,6 +268,32 @@ body {
   }
   #greet {
     margin: 15px;
+  }
+}
+
+@media screen and (max-width: 551px) {
+  #info {
+    flex-direction: column;
+  }
+  #info h1 {
+    margin: 15px 0;
+  }
+  #sort_button {
+    padding: 0.8rem 5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  table {
+    width: 100%;
+  }
+  th {
+    font-size: 16px;
+    padding: 2px;
+  }
+  td {
+    font-size: 12px;
+    padding: 5px;
   }
 }
 

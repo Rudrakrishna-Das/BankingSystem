@@ -1,6 +1,10 @@
 //constants
+const dataDetails = document.getElementById("data_details");
+const acc_number = document.getElementById("acc_number");
+const sortDirection = document.getElementById("direction");
+
 const account_details = document.getElementById("acc_details");
-const account_balance = document.getElementById("acc_balance");
+const acc_balance = document.getElementById("acc_balance");
 const account_user_name = document.getElementById("account_user_name");
 
 const depositValue = document.getElementById("deposit_value");
@@ -13,6 +17,7 @@ const withdrawButton = document.getElementById("withdraw_button");
 const transferButton = document.getElementById("transfer_button");
 const logoutButton = document.getElementById("logout_button");
 const homeButton = document.getElementById("home_button");
+const sortButton = document.getElementById("sort_button");
 
 const homeMessage = document.getElementById("home_message");
 const depositMessage = document.getElementById("deposit_message");
@@ -20,6 +25,8 @@ const withdrawMessage = document.getElementById("withdraw_message");
 const transferMessage = document.getElementById("transfer_message");
 
 const mainURL = "http://localhost:5000/";
+
+let allData = "";
 
 const sendData = async (type, value) => {
   const res = await fetch(`${mainURL}/user/${type}`, {
@@ -31,11 +38,57 @@ const sendData = async (type, value) => {
     credentials: "include",
   });
   const data = await res.json();
+
   return data;
 };
-const update_ui = (data) => {
-  account_balance.innerHTML = data.account_balance;
-  account_user_name.innerHTML = data.userName;
+
+const createTable = (date, description, value) => {
+  const tableData = document.createElement("tr");
+  const tableDate = document.createElement("td");
+  const tableDescription = document.createElement("td");
+  const tableDebit = document.createElement("td");
+  const tableCredit = document.createElement("td");
+
+  tableDate.textContent = date;
+  tableDescription.textContent = description;
+  tableDebit.textContent = description === "Deposit" ? value : "-";
+  tableCredit.textContent =
+    description === "Withdraw" || description.includes("Transfer")
+      ? value
+      : "-";
+
+  tableData.appendChild(tableDate);
+  tableData.appendChild(tableDescription);
+  tableData.appendChild(tableDebit);
+  tableData.appendChild(tableCredit);
+
+  return tableData;
+};
+const update_ui = ({ accountNo, account_balance, transaction, userName }) => {
+  acc_balance.textContent = account_balance;
+  account_user_name.innerHTML = userName;
+  acc_number.innerHTML = accountNo;
+  dataDetails.innerHTML = "";
+
+  if (sortDirection.textContent === "⬆") {
+    for (let i = transaction.length - 1; i >= 0; i--) {
+      const data = createTable(
+        transaction[i].date,
+        transaction[i].description,
+        transaction[i].value
+      );
+      dataDetails.appendChild(data);
+    }
+  } else if (sortDirection.textContent === "⬇") {
+    for (let i = 0; i < transaction.length; i++) {
+      const data = createTable(
+        transaction[i].date,
+        transaction[i].description,
+        transaction[i].value
+      );
+      dataDetails.appendChild(data);
+    }
+  }
 };
 
 const init = async () => {
@@ -50,11 +103,22 @@ const init = async () => {
     homeMessage.innerHTML = `${data.message}! Please go to HOME page`;
   }
   if (data.success) {
+    allData = data;
     update_ui(data);
   }
 };
 
 init();
+
+//SORT
+sortButton.addEventListener("click", (e) => {
+  if (sortDirection.textContent === "⬇") {
+    sortDirection.textContent = "⬆";
+  } else if (sortDirection.textContent === "⬆") {
+    sortDirection.textContent = "⬇";
+  }
+  update_ui(allData);
+});
 
 //DEPOSITE
 depositButton.addEventListener("click", async (e) => {
@@ -123,13 +187,13 @@ transferButton.addEventListener("click", async (e) => {
   }
 });
 
-// logoutButton.addEventListener("click", async () => {
-//   const res = await fetch(`${mainURL}logout`, {
-//     credentials: "include",
-//   });
-//   const data = await res.json();
-//   if (data.success) {
-//     const dynamicURL = `http://127.0.0.1:5500/Frontend/index.html`;
-//     window.location.href = dynamicURL;
-//   }
-// });
+logoutButton.addEventListener("click", async () => {
+  const res = await fetch(`${mainURL}logout`, {
+    credentials: "include",
+  });
+  const data = await res.json();
+  if (data.success) {
+    const dynamicURL = `http://127.0.0.1:5500/Frontend/index.html`;
+    window.location.href = dynamicURL;
+  }
+});

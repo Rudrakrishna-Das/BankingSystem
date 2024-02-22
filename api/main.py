@@ -76,9 +76,10 @@ def user_info():
         return jsonify(share_message(success=False,message='Unauthorized'))
     
     user =  col.user_collection.find_one({'_id':ObjectId(decode['id'])})
-    user['_id'] = str(user['_id'])
     user['success'] = True
     del user['password']
+    del user['_id']
+    del user['email']
     return jsonify(user)
 
 #LOGOUT
@@ -139,7 +140,7 @@ def transaction(type):
     if type == 'transfer':
         transfer_data = {
             'date':current_date,
-            'description':f"Transfer to {data['accountNo']}",
+            'description':"Transfer",
             'value': data['value'],
             'account_no' : data['accountNo']
         }
@@ -148,7 +149,8 @@ def transaction(type):
 
         if float(user['account_balance']) == 0 or float(user['account_balance']) - float(transfer_data['value']) < 0:
             return jsonify(share_message(success=False,message="You don't have enough money to transfer!"))
-        print(transfer_data['account_no'])
+        
+        
         transfer_filter = {'accountNo': transfer_data['account_no']}
         transfer_account = col.user_collection.find_one(transfer_filter)
 
@@ -159,14 +161,14 @@ def transaction(type):
         
         del transfer_data['account_no']
 
+        transfer_data['description'] = f"Transfer to {transfer_account['userName']}"
         user['transaction'].append(transfer_data)
         user['account_balance'] = float(user['account_balance']) - float(transfer_data['value'])
+        col.user_collection.update_one(filter,{'$set':{'transaction':user['transaction'],'account_balance':user['account_balance']}})
 
         transfer_data['description'] = f"Transfer from {user['userName']}"
         transfer_account['transaction'].append(transfer_data)
         transfer_account['account_balance'] = float(transfer_account['account_balance']) + float(transfer_data['value'])
-
-        col.user_collection.update_one(filter,{'$set':{'transaction':user['transaction'],'account_balance':user['account_balance']}})
         col.user_collection.update_one(transfer_filter,{'$set':{'transaction':transfer_account['transaction'],'account_balance':transfer_account['account_balance']}})
         
         return jsonify(share_message(success=True,message=f"You Transferred {data['value']} to {transfer_account['userName']}"))

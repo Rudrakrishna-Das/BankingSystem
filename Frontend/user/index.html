@@ -38,7 +38,22 @@
 
       <section id="passbook">
         <div id="transaction">
-          <h1>Transaction</h1>
+          <div id="info">
+            <h3>Acc No. :- <span id="acc_number">0</span></h3>
+            <h1 class="name_trans">Transactions</h1>
+            <button id="sort_button">Sort <span id="direction">⬆</span></button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Debit</th>
+                <th>Credit</th>
+              </tr>
+            </thead>
+            <tbody id="data_details"></tbody>
+          </table>
         </div>
         <div id="functionality">
           <!-- DEPOSIT -->
