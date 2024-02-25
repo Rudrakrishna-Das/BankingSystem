@@ -71,6 +71,7 @@ body {
 #personal {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 25px;
   font-weight: 900;
   border-bottom: 2px solid var(--blue);
@@ -84,16 +85,37 @@ body {
 
 #account_user_name {
   text-decoration: none;
-  transition: all 0.6s ease-in;
+  font-size: 25px;
+  font-weight: 900;
+  background-color: transparent;
+  border: none;
+  margin-left: 5px;
+  cursor: pointer;
 }
 #account_user_name:hover {
   text-decoration: underline;
+}
+#logout_button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: var(--yellow);
   transition: all 0.6s ease-in;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+#logout_button:hover {
+  color: rgb(184, 126, 1);
 }
 
 #greet {
   margin-bottom: 10px;
+  font-size: 15px;
   transition: all 0.6s ease-in;
+}
+#user_account_balance {
+  font-size: 18px;
 }
 
 #err {

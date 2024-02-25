@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+    <header id="head">
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a
+              id="back_button"
+              href="http://127.0.0.1:5500/Frontend/user/index.html"
+              >⬅️Back</a
+            >
+            <a id="home_button" href="http://127.0.0.1:5500/Frontend/index.html"
+              >Home</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <p id="main_message" class="message"></p>
+
+    <h1 style="text-align: center">PROFILE</h1>
+    <form id="user_details_form">
+      <input id="username" type="text" placeholder="Username" />
+      <input id="email" type="email" placeholder="Email" />
+      <input
+        style="cursor: not-allowed"
+        id="account_number"
+        type="number"
+        placeholder="Account Number"
+        disabled
+      />
+      <input id="password" type="text" placeholder="Password" />
+      <button id="update_button">Update</button>
+      <p id="form_message" class="message"></p>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>

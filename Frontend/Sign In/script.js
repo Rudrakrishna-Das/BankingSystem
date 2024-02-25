@@ -22,7 +22,9 @@ signIn.addEventListener("click", async (e) => {
   });
 
   const data = await res.json();
-  console.log(data);
+  if (!data.success) {
+    err.innerHTML = data.message;
+  }
   if (data.status) {
     const dynamicURL = `http://127.0.0.1:5500/Frontend/user/index.html`;
     window.location.href = dynamicURL;

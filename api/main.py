@@ -64,12 +64,12 @@ def sign_in():
     user['_id'] = str(user['_id'])
     user['status'] = True
     res = jsonify(user)   
-    res.set_cookie('token',token,samesite='None',secure=True)
+    res.set_cookie('token',token,samesite='None',secure=True,path='/')
     return res
 
 #USER
 @app.route('/user',methods = ['GET'])
-def user_info():    
+def user_info():   
     token = request.cookies.get('token') 
     decode = verify_user(token)
     if decode == False:    
@@ -82,19 +82,6 @@ def user_info():
     del user['email']
     return jsonify(user)
 
-#LOGOUT
-@app.route('/logout',methods=['GET'])
-def logout():
-    token = request.cookies.get('token') 
-
-    decode = verify_user(token)
-    if decode == False:    
-        return jsonify(share_message(success=False,message='Unauthorized'))
-    
-    res = jsonify(share_message(success=True,message='Logout Successful'))
-    res.set_cookie('token','',max_age=0,samesite='None',secure=True)
-    print(request.cookies)
-    return res
 
 #TRANSACTION
 @app.route('/user/<type>',methods=['POST','GET'])
@@ -173,6 +160,89 @@ def transaction(type):
         
         return jsonify(share_message(success=True,message=f"You Transferred {data['value']} to {transfer_account['userName']}"))
         
+
+#PROFILE
+@app.route('/profile',methods=['GET'])
+def profile():
+    token = request.cookies.get('token')
+    
+    decode = verify_user(token)
+    
+    if decode == False:    
+        return jsonify(share_message(success=False,message='Unauthorized'))
+    
+    filter = {'_id':ObjectId(decode['id'])}
+    user = col.user_collection.find_one(filter)
+    del user['password']
+    del user['_id']
+    del user['account_balance']
+    del user['transaction']
+    user['status'] = True
+
+    return jsonify(user)
+
+#UPDATE
+@app.route('/update',methods=['POST'])
+def update():
+    token = request.cookies.get('token') 
+
+    decode = verify_user(token)
+    if decode == False:    
+        return jsonify(share_message(success=False,message='Unauthorized'))
+    
+    form_data = request.get_json()
+
+    if form_data['userName'].strip() == '':
+        del form_data['userName']
+    if form_data['email'].strip() == '':
+        del form_data['email']
+    if form_data['password'].strip() == '':
+        del form_data['password']
+    
+    filter = {'_id':ObjectId(decode['id'])}
+    user = col.user_collection.find_one(filter)
+    chnaged_data = {}
+
+    for key in form_data:
+        if form_data[key] != user[key]:
+            chnaged_data[key] = form_data[key]
+
+    if 'password' in form_data:
+        chnaged_data['password'] = bcrypt.hashpw(form_data['password'].encode('utf-8'), bcrypt.gensalt())
+
+    if 'email' in chnaged_data.keys():
+        email_filter = {'email':chnaged_data['email']}
+        email_found = col.user_collection.find_one(email_filter)
+        if email_found != None:
+            return jsonify(share_message(success=False,message='Email alredy exist please try another'))
+
+    data_changed = bool(chnaged_data)
+    del user['password']
+    del user['_id']
+    if data_changed:       
+        col.user_collection.update_one(filter,{'$set':chnaged_data})
+        return jsonify(share_message(success=True,message='Updated Successfully'))
+    else :
+        return jsonify(user,share_message(success=False,message='You have Nothing to update'))
+
+
+
+
+    
+
+
+#LOGOUT
+@app.route('/logout',methods=['GET'])
+def logout():
+    token = request.cookies.get('token') 
+
+    decode = verify_user(token)
+    if decode == False:    
+        return jsonify(share_message(success=False,message='Unauthorized'))
+    
+    res = jsonify(share_message(success=True,message='Logout Successful'))
+    res.set_cookie('token','',max_age=0,samesite='None')
+    return res
 
 
 

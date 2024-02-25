@@ -11,6 +11,7 @@ const depositValue = document.getElementById("deposit_value");
 const withdrawValue = document.getElementById("withdraw_value");
 const transferValue = document.getElementById("transfer_value");
 const transferAccount = document.getElementById("account_number");
+const profileButton = document.getElementById("account_user_name");
 
 const depositButton = document.getElementById("deposit_button");
 const withdrawButton = document.getElementById("withdraw_button");
@@ -66,7 +67,7 @@ const createTable = (date, description, value) => {
 };
 const update_ui = ({ accountNo, account_balance, transaction, userName }) => {
   acc_balance.textContent = account_balance;
-  account_user_name.innerHTML = userName;
+  account_user_name.textContent = userName;
   acc_number.innerHTML = accountNo;
   dataDetails.innerHTML = "";
 
@@ -187,13 +188,21 @@ transferButton.addEventListener("click", async (e) => {
   }
 });
 
+// LOGOUT
 logoutButton.addEventListener("click", async () => {
   const res = await fetch(`${mainURL}logout`, {
     credentials: "include",
   });
   const data = await res.json();
+  console.log(data);
   if (data.success) {
     const dynamicURL = `http://127.0.0.1:5500/Frontend/index.html`;
     window.location.href = dynamicURL;
   }
+});
+
+// PROFILE
+profileButton.addEventListener("click", () => {
+  const url = "http://127.0.0.1:5500/Frontend/profile/index.html";
+  window.location.href = url;
 });

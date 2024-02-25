@@ -1,0 +1,108 @@
+/* VARIABLES */
+:root {
+  --blue: rgb(6, 6, 175);
+  --yellow: rgb(255, 174, 0);
+  --darkorange: rgb(136, 69, 2);
+}
+
+/* INITIAL */
+* {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--yellow);
+}
+
+/* NAVIGATION */
+
+#head {
+  background-color: var(--darkorange);
+  padding: 10px 20px;
+  font-weight: 800;
+  max-width: 98.9%;
+  position: sticky;
+  top: 0;
+  transition: all 0.5s;
+  z-index: 10;
+}
+
+.navigation {
+  list-style: none;
+}
+.navigation li {
+  text-align: right;
+}
+.navigation li a {
+  padding: 0 40px;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--yellow);
+  text-decoration: none;
+  transition: all 0.4s ease-in;
+}
+.navigation li a:hover {
+  color: var(--blue);
+}
+#home_button {
+  display: none;
+}
+
+.message {
+  text-align: center;
+  font-size: 20px;
+  margin: 2rem 0;
+  color: red;
+  font-weight: 900;
+}
+#form_message {
+  margin: 8px 0;
+}
+
+#user_details_form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 50%;
+  margin: 4rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: var(--blue);
+  box-shadow: 2px 2px 20px 20px black;
+  transition: all 0.5s ease-in;
+}
+#user_details_form input {
+  padding: 8px 6px;
+  font-size: 15px;
+  font-weight: 800;
+  border: none;
+  border-radius: 8px;
+  color: var(--blue);
+}
+
+#user_details_form #account_number {
+  color: var(--yellow);
+}
+
+#user_details_form button {
+  padding: 8px 6px;
+  font-size: 15px;
+  font-weight: 800;
+  background-color: var(--yellow);
+  color: var(--blue);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+}
+
+#user_details_form button:hover {
+  background-color: rgb(175, 121, 4);
+}
+
+@media screen and (max-width: 560px) {
+  #user_details_form {
+    max-width: 80%;
+  }
+}
