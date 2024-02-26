@@ -1,13 +1,14 @@
 import os
 import jwt
 import bcrypt
+import smtplib
 from datetime import datetime
 from db import DATABASE
 from bson import ObjectId
 from flask_cors import CORS
 from flask import Flask,jsonify,request
 from dotenv import find_dotenv,load_dotenv
-from helper import generate_account_number,share_message,verify_user
+from helper import generate_account_number,share_message,verify_user,generate_pin
 
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
@@ -224,6 +225,34 @@ def update():
         return jsonify(share_message(success=True,message='Updated Successfully'))
     else :
         return jsonify(user,share_message(success=False,message='You have Nothing to update'))
+pin = ''
+#FORGOT PASSWORD
+@app.route('/forgot-password',methods=['POST'])
+def forgot_password():
+    email = request.get_json()
+    filter = {'email':email['email']}
+    user = col.user_collection.find_one(filter)
+    if user == None:
+        return jsonify(share_message(success=False,message='No user found. Please check your email'))
+    global pin
+    pin = generate_pin()
+    my_email = os.getenv('MY_EMAIL')
+    my_password = os.getenv('PASSWORD')
+    to_send = user['email']
+
+    connection = smtplib.SMTP('smtp.gmail.com',port=587)
+    connection.starttls()
+    connection.login(user=my_email,password=my_password)
+    connection.sendmail(from_addr=my_email,to_addrs=to_send,msg=f"Subject:OTP pin\n\n{pin}")
+    
+    return jsonify(share_message(success=True,message='user found'))
+
+# MATCH PIN
+@app.route('/pin-match',methods=['GET'])
+def match_pin():
+    global pin
+    return jsonify({'pin':pin})
+
 
 
 

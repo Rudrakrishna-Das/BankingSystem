@@ -9,6 +9,9 @@ load_dotenv(dotenv_path)
 def generate_account_number ():
     return random.randint(1111111111,9999999999)
 
+def generate_pin():
+    return random.randint(111111,999999)
+
 def share_message(success:bool,message:str):
     err_msg = {
         'success':success,

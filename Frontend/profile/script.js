@@ -1,7 +1,7 @@
 const message = document.getElementById("main_message");
 const formMessage = document.getElementById("form_message");
 formMessage.style.display = "none";
-const userDetails = document.getElementById("user_details_form");
+const userDetails = document.getElementById("user_details");
 
 const userName = document.getElementById("username");
 const email = document.getElementById("email");

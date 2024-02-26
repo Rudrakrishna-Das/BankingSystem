@@ -194,15 +194,14 @@ logoutButton.addEventListener("click", async () => {
     credentials: "include",
   });
   const data = await res.json();
-  console.log(data);
   if (data.success) {
-    const dynamicURL = `http://127.0.0.1:5500/Frontend/index.html`;
+    const dynamicURL = `/Frontend/index.html`;
     window.location.href = dynamicURL;
   }
 });
 
 // PROFILE
 profileButton.addEventListener("click", () => {
-  const url = "http://127.0.0.1:5500/Frontend/profile/index.html";
+  const url = "/Frontend/profile/index.html";
   window.location.href = url;
 });

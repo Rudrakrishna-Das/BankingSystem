@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+    <header id="head">
+      <nav>
+        <ul class="navigation">
+          <li class="initial">
+            <a href="/Frontend/Sign In/index.html">⬅️ Back</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <form>
+        <!-- FORGOT PASSWORD -->
+        <div id="forgot_password">
+          <input id="email" type="email" placeholder="Email" />
+        </div>
+        <!-- INPUT PIN -->
+        <div id="input_pin">
+          <h3>Input Pin</h3>
+          <div id="input_num">
+            <input
+              id="num_one"
+              class="input_number"
+              type="number"
+              placeholder="0"
+              min="0"
+              max="9"
+            />
+            <input
+              id="num_two"
+              class="input_number"
+              type="number"
+              placeholder="0"
+              min="0"
+              max="9"
+            />
+            <input
+              id="num_three"
+              class="input_number"
+              type="number"
+              placeholder="0"
+              min="0"
+              max="9"
+            />
+            <input
+              id="num_four"
+              class="input_number"
+              type="number"
+              placeholder="0"
+              min="0"
+              max="9"
+            />
+            <input
+              id="num_five"
+              class="input_number"
+              type="number"
+              placeholder="0"
+              min="0"
+              max="9"
+            />
+            <input
+              id="num_six"
+              class="input_number"
+              type="number"
+              placeholder="0"
+              min="0"
+              max="9"
+            />
+          </div>
+        </div>
+        <!-- UPDTAE PASSWORD -->
+        <div id="update_password">
+          <input id="new_password" type="text" placeholder="New password" />
+        </div>
+        <button id="submit_button">Submit</button>
+      </form>
+      <p id="message"></p>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

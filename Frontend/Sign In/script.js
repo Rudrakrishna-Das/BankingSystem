@@ -26,7 +26,7 @@ signIn.addEventListener("click", async (e) => {
     err.innerHTML = data.message;
   }
   if (data.status) {
-    const dynamicURL = `http://127.0.0.1:5500/Frontend/user/index.html`;
+    const dynamicURL = `/Frontend/user/index.html`;
     window.location.href = dynamicURL;
   }
 });
