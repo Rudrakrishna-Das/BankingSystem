@@ -3,6 +3,7 @@
 // FORGOT PASSWORD
 const forgotPasswordForm = document.getElementById("forgot_password");
 const email = document.getElementById("email");
+const emailSubmitButton = document.getElementById("email_submit_button");
 
 // INPUT PIN
 const inputPinForm = document.getElementById("input_pin");
@@ -11,8 +12,7 @@ const numbers = document.getElementsByClassName("input_number");
 // UPDATE PASSWORD
 const updatePasswordForm = document.getElementById("update_password");
 const newPassword = document.getElementById("new_password");
-// BUTTON
-const submitButton = document.getElementById("submit_button");
+
 // MESSAGE
 const message = document.getElementById("message");
 
@@ -22,7 +22,7 @@ const mainUrl = "http://127.0.0.1:5000/";
 // FUNCTIONALITY
 
 // FORGOT PASSWORD
-submitButton.addEventListener("click", async (e) => {
+emailSubmitButton.addEventListener("click", async (e) => {
   e.preventDefault();
   message.innerHTML = "";
   if (email.value.trim().length === 0) {
@@ -65,3 +65,4 @@ for (let i = 0; i < numbers.length; i++) {
     }
   });
 }
+submitButton.addEventListener();

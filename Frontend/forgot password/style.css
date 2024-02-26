@@ -51,7 +51,7 @@ main {
   max-width: 60%;
   margin: 6rem auto;
   background-color: var(--blue);
-  padding: 2rem;
+  padding: 2rem 1rem;
   border-radius: 10px;
   box-shadow: 2px 2px 20px 20px black;
   animation: slide_in 0.5s;
@@ -96,8 +96,7 @@ form button {
 }
 /* INPUT PIN */
 #input_pin {
-  text-align: center;
-  margin: 2rem auto;
+  max-width: 100%;
   margin-bottom: 20px;
   display: none;
 }
@@ -115,6 +114,7 @@ form button {
 }
 #input_num {
   display: flex;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -182,6 +182,9 @@ form button {
   form input {
     width: 92%;
   }
+  #input_num form {
+    width: 100%;
+  }
   #input_num input {
     width: 100%;
   }
@@ -196,12 +199,14 @@ form button {
     margin: 6rem 1rem;
   }
 }
-@media screen and (max-width: 330px) {
-  #input_pin {
+@media screen and (max-width: 366px) {
+  #input_pin #input_num {
     overflow-x: scroll;
   }
-  #input_pin input {
-    padding: 4px;
-    /* text-align: ; */
+  #input_pin #input_num input {
+    width: 20px;
+  }
+  #input_pin #input_num {
+    flex-wrap: wrap;
   }
 }

@@ -18,14 +18,17 @@
       </nav>
     </header>
     <main>
-      <form>
-        <!-- FORGOT PASSWORD -->
-        <div id="forgot_password">
+      <!-- FORGOT PASSWORD -->
+      <div id="forgot_password">
+        <form>
           <input id="email" type="email" placeholder="Email" />
-        </div>
-        <!-- INPUT PIN -->
-        <div id="input_pin">
-          <h3>Input Pin</h3>
+          <button id="email_submit_button">Submit</button>
+        </form>
+      </div>
+      <!-- INPUT PIN -->
+      <div id="input_pin">
+        <h3>Input Pin</h3>
+        <form>
           <div id="input_num">
             <input
               id="num_one"
@@ -76,13 +79,17 @@
               max="9"
             />
           </div>
-        </div>
-        <!-- UPDTAE PASSWORD -->
-        <div id="update_password">
+          <button id="pin_submit_button">Submit</button>
+        </form>
+      </div>
+      <!-- UPDTAE PASSWORD -->
+      <div id="update_password">
+        <form>
           <input id="new_password" type="text" placeholder="New password" />
-        </div>
-        <button id="submit_button">Submit</button>
-      </form>
+          <button id="updated_password_submit_button">Submit</button>
+        </form>
+      </div>
+
       <p id="message"></p>
     </main>
     <script src="script.js"></script>
