@@ -150,40 +150,6 @@ li a:hover {
   height: 1.5rem;
 }
 
-.details {
-  display: flex;
-  justify-content: space-around;
-}
-
-.our_details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  margin: 0 10px;
-  border-radius: 8px;
-  color: rgb(0, 0, 0);
-  cursor: pointer;
-  background-color: rgba(0, 0, 255, 0.5);
-  transition: all 0.6s ease-in;
-}
-
-.our_details.phone:hover {
-  transform: translate(-10%, -10%) rotate(-10deg) scale(1.2);
-}
-
-.our_details.mail:hover {
-  transform: translate(10%, -10%) rotate(10deg) scale(1.2);
-}
-
-.our_details .icon {
-  font-size: 80px;
-}
-.our_details .icon_details {
-  font-size: 20px;
-  font-weight: 900;
-}
-
 .contact_form .send_button {
   width: 82%;
   padding: 10px 0;
@@ -204,7 +170,84 @@ li a:hover {
   font-weight: 800;
   padding: 10px 0;
 }
+.logo {
+  width: 200px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.logo img:first-child {
+  width: 100%;
+  box-shadow: 0px 10px 15px -3px rgb(16, 0, 245, 0.7);
+  border-radius: 8px;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+}
+.logo img:last-child {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(25%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
 
+.logo:hover img:first-child {
+  transform: perspective(250px) rotateX(80deg);
+  opacity: 0.8;
+}
+.logo:hover img:last-child {
+  opacity: 1;
+  transform: translateY(-45px);
+}
+.logo .bank_name {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 80%;
+}
+
+.logo .bank_name h1 {
+  opacity: 0;
+  transform: scale(4);
+  transition: all 0.5s ease-in-out;
+}
+
+.logo:hover .bank_name h1 {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logo:hover .bank_name #s {
+  transition-delay: 0.1s;
+}
+.logo:hover .bank_name #a {
+  transition-delay: 0.2s;
+}
+.logo:hover .bank_name #f {
+  transition-delay: 0.3s;
+}
+.logo:hover .bank_name #e {
+  transition-delay: 0.4s;
+}
+.logo:hover .bank_name #sapce {
+  transition-delay: 0.5s;
+}
+.logo:hover .bank_name #b {
+  transition-delay: 0.6s;
+}
+.logo:hover .bank_name #A {
+  transition-delay: 0.7s;
+}
+.logo:hover .bank_name #n {
+  transition-delay: 0.8s;
+}
+.logo:hover .bank_name #k {
+  transition-delay: 0.9s;
+}
 /* MEDIA QUERRY */
 
 @media screen and (max-width: 832px) {
@@ -217,24 +260,14 @@ li a:hover {
   .contact_form .send_button {
     width: 70%;
   }
-}
-
-@media screen and (max-width: 832px) {
   .contact {
     flex-direction: column;
   }
   .contact_form {
     margin: 10px auto;
   }
-  .details {
-    margin: 0 20px;
-    margin-bottom: 10px;
-  }
-  .our_details .icon {
-    font-size: 60px;
-  }
-  .our_details .icon_details {
-    font-size: 15px;
+  .logo {
+    display: none;
   }
 }
 

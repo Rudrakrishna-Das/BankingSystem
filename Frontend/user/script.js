@@ -67,7 +67,7 @@ const createTable = (date, description, value) => {
 };
 const update_ui = ({ accountNo, account_balance, transaction, userName }) => {
   acc_balance.textContent = account_balance;
-  account_user_name.textContent = userName;
+  account_user_name.textContent = userName.toUpperCase();
   acc_number.innerHTML = accountNo;
   dataDetails.innerHTML = "";
 

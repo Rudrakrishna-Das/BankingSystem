@@ -59,6 +59,7 @@ main {
   animation-iteration-count: 1;
 }
 #sign_in_form {
+  position: relative;
   margin-bottom: 20px;
   width: 80%;
   margin: 2rem auto;
@@ -114,6 +115,7 @@ main p a:hover {
 
 #forgot_password {
   color: var(--yellow);
+  display: inline;
   font-size: 20px;
   margin-left: 8px;
   text-decoration: none;
@@ -137,6 +139,13 @@ main p a:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+#open_eye {
+  background-color: transparent;
+  width: 20px;
+  position: absolute;
+  top: 0;
 }
 
 /* MEDIA QUERRY */

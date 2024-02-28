@@ -226,15 +226,17 @@ def update():
     else :
         return jsonify(user,share_message(success=False,message='You have Nothing to update'))
 pin = ''
+email = ''
 #FORGOT PASSWORD
 @app.route('/forgot-password',methods=['POST'])
 def forgot_password():
+    global pin,email
     email = request.get_json()
     filter = {'email':email['email']}
     user = col.user_collection.find_one(filter)
+    email = user['email']
     if user == None:
         return jsonify(share_message(success=False,message='No user found. Please check your email'))
-    global pin
     pin = generate_pin()
     my_email = os.getenv('MY_EMAIL')
     my_password = os.getenv('PASSWORD')
@@ -248,10 +250,27 @@ def forgot_password():
     return jsonify(share_message(success=True,message='user found'))
 
 # MATCH PIN
-@app.route('/pin-match',methods=['GET'])
+@app.route('/pin-match',methods=['POST'])
 def match_pin():
-    global pin
-    return jsonify({'pin':pin})
+    global pin,email
+    user_pin = request.get_json()
+    if int(user_pin['userPin']) != pin:
+        pin = ''
+        email = ''
+        return jsonify(share_message(success=False,message='Entered wrong pin'))    
+    pin = ''
+    return jsonify(share_message(success=True,message=''))
+
+@app.route('/update-password',methods=['POST'])
+def update_password():
+    global email
+    new_password = request.get_json()    
+    new_password['newPassword'] = bcrypt.hashpw(new_password['newPassword'].encode('utf-8'), bcrypt.gensalt())
+    
+    col.user_collection.update_one({'email':email},{'$set':{'password':new_password['newPassword']}})
+    return jsonify(share_message(success=True,message=''))
+    
+
 
 
 
