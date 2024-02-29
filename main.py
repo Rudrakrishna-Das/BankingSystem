@@ -63,7 +63,7 @@ def sign_in():
     token = jwt.encode({'id':str(user['_id'])},os.getenv('SECRET_KEY'),os.getenv('ALGORITHM'))
 
     user['_id'] = str(user['_id'])
-    user['status'] = True
+    user['success'] = True
     res = jsonify(user)   
     res.set_cookie('token',token,samesite='None',secure=True,path='/')
     return res
@@ -293,5 +293,22 @@ def logout():
     return res
 
 
+# DELETE USER
+@app.route('/delete-user',methods=['GET'])
+def delete_user():
+    token = request.cookies.get('token')
+    decode = verify_user(token)
+    if decode == False:
+        return jsonify(share_message(success=False,message='Unauthorized'))
+    
+    filter = {'_id':ObjectId(decode['id'])}
+    user = col.user_collection.find_one(filter)
 
+    if float(user['account_balance']) > 0:
+        return jsonify(share_message(success=False,message=f"You have rs {user['account_balance']:.2f}. Please withdraw that and then delete"))
+    col.user_collection.delete_one(filter)
+    res = jsonify(share_message(success=True,message=''))
+    res.set_cookie('token','',max_age=0,samesite='None')
+    return res
+    
 app.run(debug=True)

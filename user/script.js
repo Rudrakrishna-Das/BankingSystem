@@ -195,13 +195,13 @@ logoutButton.addEventListener("click", async () => {
   });
   const data = await res.json();
   if (data.success) {
-    const dynamicURL = `/Frontend/index.html`;
+    const dynamicURL = `/index.html`;
     window.location.href = dynamicURL;
   }
 });
 
 // PROFILE
 profileButton.addEventListener("click", () => {
-  const url = "/Frontend/profile/index.html";
+  const url = "/profile/index.html";
   window.location.href = url;
 });

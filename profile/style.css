@@ -63,6 +63,7 @@ body {
 #user_details_form {
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 8px;
   max-width: 50%;
   margin: 4rem auto;
@@ -85,7 +86,7 @@ body {
   color: var(--yellow);
 }
 
-#user_details_form button {
+#update_button {
   padding: 8px 6px;
   font-size: 15px;
   font-weight: 800;
@@ -97,8 +98,40 @@ body {
   transition: all 0.5s ease-in;
 }
 
-#user_details_form button:hover {
+#update_button:hover {
   background-color: rgb(175, 121, 4);
+}
+.eye {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  width: 20px;
+  position: absolute;
+  top: 11.4rem;
+  right: 2.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.eye:hover{
+  opacity: 0.5;
+}
+#open_eye{
+  display: none;
+}
+
+#delete_user_button{
+  padding: 8px 6px;
+  font-size: 15px;
+  font-weight: 800;
+  background-color: rgb(156, 0, 0);
+  color: var(--yellow);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+}
+#delete_user_button:hover{
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 560px) {

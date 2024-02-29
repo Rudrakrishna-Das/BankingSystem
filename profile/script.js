@@ -10,7 +10,10 @@ const accountNumber = document.getElementById("account_number");
 
 const backButton = document.getElementById("back_button");
 const homeButton = document.getElementById("home_button");
+const openEyeButton = document.getElementById("open_eye");
+const closeEyeButton = document.getElementById("close_eye");
 const updateButton = document.getElementById("update_button");
+const deleteUserButton = document.getElementById("delete_user_button");
 
 const maintURL = "http://localhost:5000/";
 const init = async () => {
@@ -63,4 +66,36 @@ updateButton.addEventListener("click", async (e) => {
 
   formMessage.style.display = "block";
   formMessage.innerHTML = data[1]?.message || data.message;
+});
+
+closeEyeButton.addEventListener("click", (e) => {
+  console.log("click");
+  password.type = "text";
+  closeEyeButton.style.display = "none";
+  openEyeButton.style.display = "block";
+  password.focus();
+});
+
+openEyeButton.addEventListener("click", (e) => {
+  password.type = "password";
+  openEyeButton.style.display = "none";
+  closeEyeButton.style.display = "block";
+  password.focus();
+});
+
+deleteUserButton.addEventListener("click", async (e) => {
+  formMessage.innerHTML = "";
+  formMessage.style.display = "none";
+  const res = await fetch(`${maintURL}delete-user`, {
+    credentials: "include",
+  });
+  const data = await res.json();
+  if (!data.success) {
+    formMessage.style.display = "block";
+    formMessage.innerHTML = data.message;
+    return;
+  }
+  if (data.success) {
+    window.location.href = "/index.html";
+  }
 });

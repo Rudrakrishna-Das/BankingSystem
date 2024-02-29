@@ -1,9 +1,12 @@
 const signUpName = document.getElementById("name");
 const signUpEmail = document.getElementById("email");
 const signUpPassword = document.getElementById("password");
-const signUpButton = document.getElementById("sign_up_button");
 const form = document.getElementsByTagName("form");
 const message = document.getElementById("erroe_message");
+
+const openEyeButton = document.getElementById("open_eye");
+const closeEyeButton = document.getElementById("close_eye");
+const signUpButton = document.getElementById("sign_up_button");
 
 const mainURL = "http://localhost:5000/";
 
@@ -42,4 +45,18 @@ signUpButton.addEventListener("click", async (e) => {
       console.log(error);
     }
   }
+});
+
+closeEyeButton.addEventListener("click", (e) => {
+  password.type = "text";
+  closeEyeButton.style.display = "none";
+  openEyeButton.style.display = "block";
+  password.focus();
+});
+
+openEyeButton.addEventListener("click", (e) => {
+  password.type = "password";
+  openEyeButton.style.display = "none";
+  closeEyeButton.style.display = "block";
+  password.focus();
 });

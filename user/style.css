@@ -79,17 +79,16 @@ body {
 }
 .details {
   color: var(--blue);
-  font-size: 20px;
-  transition: all 0.6s ease-in;
-}
-
-#account_user_name {
-  text-decoration: none;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 900;
+  text-decoration: none;
+  transition: all 0.6s ease-in;
   background-color: transparent;
   border: none;
   margin-left: 5px;
+}
+
+#account_user_name {
   cursor: pointer;
 }
 #account_user_name:hover {
