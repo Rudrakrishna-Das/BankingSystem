@@ -21,7 +21,7 @@ const updatePasswordButton = document.getElementById(
 const message = document.getElementById("message");
 
 // BACKEND MAIN URL
-const mainUrl = "http://127.0.0.1:5000/";
+const mainUrl = "https://banking-system-backend-kmjs.onrender.com/";
 
 // FUNCTIONALITY
 

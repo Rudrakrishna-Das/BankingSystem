@@ -15,7 +15,7 @@ const closeEyeButton = document.getElementById("close_eye");
 const updateButton = document.getElementById("update_button");
 const deleteUserButton = document.getElementById("delete_user_button");
 
-const maintURL = "http://localhost:5000/";
+const maintURL = "https://banking-system-backend-kmjs.onrender.com/";
 const init = async () => {
   const res = await fetch(`${maintURL}profile`, {
     credentials: "include",

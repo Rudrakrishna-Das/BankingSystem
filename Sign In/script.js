@@ -7,7 +7,7 @@ const signIn = document.getElementById("sign_in_form_button");
 const openEyeButton = document.getElementById("open_eye");
 const closeEyeButton = document.getElementById("close_eye");
 
-const mainURL = "http://localhost:5000/";
+const mainURL = "https://banking-system-backend-kmjs.onrender.com/";
 
 signIn.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -26,7 +26,7 @@ signIn.addEventListener("click", async (e) => {
   });
 
   const data = await res.json();
-  console.log(data);
+
   if (!data.success) {
     err.innerHTML = data.message;
   }

@@ -8,7 +8,7 @@ const openEyeButton = document.getElementById("open_eye");
 const closeEyeButton = document.getElementById("close_eye");
 const signUpButton = document.getElementById("sign_up_button");
 
-const mainURL = "http://localhost:5000/";
+const mainURL = "https://banking-system-backend-kmjs.onrender.com/";
 
 signUpButton.addEventListener("click", async (e) => {
   e.preventDefault();

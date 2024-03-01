@@ -25,7 +25,7 @@ const depositMessage = document.getElementById("deposit_message");
 const withdrawMessage = document.getElementById("withdraw_message");
 const transferMessage = document.getElementById("transfer_message");
 
-const mainURL = "http://localhost:5000/";
+const mainURL = "https://banking-system-backend-kmjs.onrender.com/";
 
 let allData = "";
 
