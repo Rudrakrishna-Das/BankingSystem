@@ -21,6 +21,11 @@ signUpButton.addEventListener("click", async (e) => {
     message.innerHTML =
       "Name should be atleast 2 character and Password should be atleast 8 characters long";
   } else {
+    signUpButton.innerHTML = '<div id="loader"></div>';
+    signUpButton.disabled = true;
+    signUpName.disabled = true;
+    signUpEmail.disabled = true;
+    signUpPassword.disabled = true;
     const userDetails = {
       userName: signUpName.value,
       email: signUpEmail.value,
@@ -41,6 +46,11 @@ signUpButton.addEventListener("click", async (e) => {
       if (data.success) {
         message.innerHTML = data.message;
       }
+      signUpButton.innerHTML = "Sign Up";
+      signUpButton.disabled = false;
+      signUpName.disabled = false;
+      signUpEmail.disabled = false;
+      signUpPassword.disabled = false;
     } catch (error) {
       console.log(error);
     }

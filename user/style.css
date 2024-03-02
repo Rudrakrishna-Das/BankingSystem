@@ -30,10 +30,9 @@ body {
 
 .navigation {
   list-style: none;
-}
-.navigation li {
   text-align: right;
 }
+
 .navigation li a {
   padding: 0 40px;
   font-size: 20px;
@@ -232,7 +231,8 @@ td {
 
 .function_form input {
   padding: 8px;
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: 800;
   border-radius: 8px;
   border: none;
   transition: all 0.6s ease-in;
@@ -243,7 +243,7 @@ td {
   padding: 8px;
   background-color: var(--yellow);
   color: var(--blue);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 800;
   border: none;
   border-radius: 8px;
@@ -253,6 +253,17 @@ td {
   background-color: var(--darkorange);
   transform: scaleY(1.1);
 }
+
+.function_form button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+.function_form input:disabled {
+  color: var(--yellow);
+  background-color: gray;
+  cursor: not-allowed;
+}
+
 .mess {
   margin-top: 8px;
   font-size: 20px;
@@ -263,6 +274,26 @@ td {
 
 #home_button {
   display: none;
+}
+
+/* LOADING */
+#loader {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--yellow);
+  border-radius: 50%;
+  margin: 0 auto;
+  border-top-color: var(--blue);
+  animation: loading 0.8s;
+  animation-iteration-count: infinite;
+}
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* MEDIA QUERRY */

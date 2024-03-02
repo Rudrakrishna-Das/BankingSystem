@@ -1,4 +1,7 @@
 //constants
+const personalDetails = document.getElementById("personal");
+const passbookDetails = document.getElementById("passbook");
+
 const dataDetails = document.getElementById("data_details");
 const acc_number = document.getElementById("acc_number");
 const sortDirection = document.getElementById("direction");
@@ -92,19 +95,37 @@ const update_ui = ({ accountNo, account_balance, transaction, userName }) => {
   }
 };
 
+let initOnceCalled = false;
+
 const init = async () => {
+  if (!initOnceCalled) {
+    logoutButton.style.display = "none";
+    homeButton.style.display = "none";
+    account_details.style.display = "none";
+    homeMessage.innerHTML = '<div id="loader"></div>';
+  }
+
   const res = await fetch(`${mainURL}user`, {
     credentials: "include",
   });
   const data = await res.json();
   if (!data.success) {
     logoutButton.style.display = "none";
-    account_details.style.display = "none";
     homeButton.style.display = "block";
+    account_details.style.display = "none";
     homeMessage.innerHTML = `${data.message}! Please go to HOME page`;
+    initOnceCalled = true;
   }
   if (data.success) {
     allData = data;
+    if (!initOnceCalled) {
+      logoutButton.style.display = "inline";
+      account_details.style.display = "block";
+      homeButton.style.display = "none";
+      homeMessage.innerHTML = "";
+    }
+
+    initOnceCalled = true;
     update_ui(data);
   }
 };
@@ -130,12 +151,19 @@ depositButton.addEventListener("click", async (e) => {
   if (depositValue.value.trim().length == 0) {
     depositMessage.innerHTML = "Cannot leave blank!";
   } else {
+    depositValue.disabled = true;
+    depositButton.innerHTML = '<div id="loader"></div>';
+    depositButton.disabled = true;
     const data = await sendData("deposit", { value: depositValue.value });
     depositValue.value = "";
     if (data.success) {
       init();
+      depositMessage.style.color = "yellow";
       depositMessage.innerHTML = data.message;
     }
+    depositValue.disabled = false;
+    depositButton.innerHTML = "Deposit";
+    depositButton.disabled = false;
   }
 });
 
@@ -148,15 +176,23 @@ withdrawButton.addEventListener("click", async (e) => {
   if (withdrawValue.value.trim().length == 0) {
     withdrawMessage.innerHTML = "Cannot leave blank!";
   } else {
+    withdrawButton.disabled = true;
+    withdrawButton.innerHTML = '<div id="loader"></div>';
+    withdrawValue.disabled = true;
     const data = await sendData("withdraw", { value: withdrawValue.value });
     withdrawValue.value = "";
     if (!data.success) {
       withdrawMessage.innerHTML = data.message;
+      withdrawMessage.style.color = "yellow";
     }
     if (data.success) {
       init();
       withdrawMessage.innerHTML = data.message;
+      withdrawMessage.style.color = "yellow";
     }
+    withdrawButton.disabled = false;
+    withdrawButton.innerHTML = "Withdraw";
+    withdrawValue.disabled = false;
   }
 });
 
@@ -172,6 +208,10 @@ transferButton.addEventListener("click", async (e) => {
   ) {
     transferMessage.innerHTML = "Cannot leave blank!";
   } else {
+    transferAccount.disabled = true;
+    transferValue.disabled = true;
+    transferButton.innerHTML = '<div id="loader"></div>';
+    transferButton.disabled = true;
     const data = await sendData("transfer", {
       value: transferValue.value,
       accountNo: transferAccount.value,
@@ -180,16 +220,26 @@ transferButton.addEventListener("click", async (e) => {
     transferAccount.value = "";
     if (!data.success) {
       transferMessage.innerHTML = data.message;
+      transferMessage.style.color = "yellow";
     }
     if (data.success) {
       init();
       transferMessage.innerHTML = data.message;
+      transferMessage.style.color = "yellow";
     }
   }
+  transferValue.disabled = false;
+  transferButton.disabled = false;
+  transferAccount.disabled = false;
+  transferButton.innerHTML = "Transfer";
 });
 
 // LOGOUT
 logoutButton.addEventListener("click", async () => {
+  logoutButton.style.display = "none";
+  homeButton.style.display = "none";
+  account_details.style.display = "none";
+  homeMessage.innerHTML = '<div id="loader"></div>';
   const res = await fetch(`${mainURL}logout`, {
     credentials: "include",
   });

@@ -16,18 +16,25 @@ const updateButton = document.getElementById("update_button");
 const deleteUserButton = document.getElementById("delete_user_button");
 
 const maintURL = "https://banking-system-backend-kmjs.onrender.com/";
+
 const init = async () => {
+  userDetails.style.display = "none";
+  backButton.style.display = "none";
+  homeButton.style.display = "none";
+  message.innerHTML = '<div id="loader"></div>';
+
   const res = await fetch(`${maintURL}profile`, {
     credentials: "include",
   });
   const data = await res.json();
   if (!data.status) {
     message.innerHTML = `${data.message}. Please goto home page`;
-    backButton.style.display = "none";
-    homeButton.style.display = "block";
-    userDetails.style.display = "none";
   }
   if (data.status) {
+    message.innerHTML = "";
+    userDetails.style.display = "block";
+    backButton.style.display = "inline";
+    homeButton.style.display = "none";
     userName.value = data.userName;
     email.value = data.email;
     accountNumber.value = data.accountNo;
@@ -44,6 +51,13 @@ updateButton.addEventListener("click", async (e) => {
     formMessage.innerHTML = "Password should be atleast 8 characters long";
     return;
   }
+  userName.disabled = true;
+  email.disabled = true;
+  password.disabled = true;
+  deleteUserButton.disabled = true;
+  updateButton.disabled = true;
+  updateButton.innerHTML = '<div id="loader"></div>';
+
   const formData = {
     userName: userName.value.trim() || "",
     email: email.value.trim() || "",
@@ -63,13 +77,18 @@ updateButton.addEventListener("click", async (e) => {
     userName.value = data[0]?.userName;
     email.value = data[0]?.email;
   }
+  userName.disabled = false;
+  email.disabled = false;
+  password.disabled = false;
+  deleteUserButton.disabled = false;
+  updateButton.disabled = false;
+  updateButton.innerHTML = "Update";
 
   formMessage.style.display = "block";
   formMessage.innerHTML = data[1]?.message || data.message;
 });
 
 closeEyeButton.addEventListener("click", (e) => {
-  console.log("click");
   password.type = "text";
   closeEyeButton.style.display = "none";
   openEyeButton.style.display = "block";
@@ -86,11 +105,25 @@ openEyeButton.addEventListener("click", (e) => {
 deleteUserButton.addEventListener("click", async (e) => {
   formMessage.innerHTML = "";
   formMessage.style.display = "none";
+
+  userName.disabled = true;
+  email.disabled = true;
+  password.disabled = true;
+  updateButton.disabled = true;
+  deleteUserButton.disabled = true;
+  deleteUserButton.innerHTML = '<div id="loader"></div>';
+
   const res = await fetch(`${maintURL}delete-user`, {
     credentials: "include",
   });
   const data = await res.json();
   if (!data.success) {
+    userName.disabled = false;
+    email.disabled = false;
+    password.disabled = false;
+    updateButton.disabled = false;
+    deleteUserButton.disabled = false;
+    deleteUserButton.innerHTML = "Delete User";
     formMessage.style.display = "block";
     formMessage.innerHTML = data.message;
     return;

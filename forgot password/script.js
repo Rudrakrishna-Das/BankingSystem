@@ -31,7 +31,11 @@ emailSubmitButton.addEventListener("click", async (e) => {
   message.innerHTML = "";
   if (email.value.trim().length === 0) {
     message.innerHTML = "Email cannot be empty";
+    return;
   }
+  email.disabled = true;
+  emailSubmitButton.disabled = true;
+  emailSubmitButton.innerHTML = '<div id="loader"></div>';
   const emailData = {
     email: email.value.trim(),
   };
@@ -43,7 +47,11 @@ emailSubmitButton.addEventListener("click", async (e) => {
     body: JSON.stringify(emailData),
   });
   const data = await res.json();
+
   if (!data.success) {
+    email.disabled = false;
+    emailSubmitButton.disabled = false;
+    emailSubmitButton.innerHTML = "Submit";
     message.innerHTML = data.message;
   }
 
@@ -85,6 +93,11 @@ pinSubmitButton.addEventListener("click", async (e) => {
     message.innerHTML = "You didnot enter the pin";
     return;
   }
+  for (let i = 0; i < numbers.length; i++) {
+    numbers[i].disabled = true;
+  }
+  pinSubmitButton.disabled = true;
+  pinSubmitButton.innerHTML = '<div id="loader"></div>';
   const res = await fetch(`${mainUrl}pin-match`, {
     method: "POST",
     headers: {
@@ -94,7 +107,15 @@ pinSubmitButton.addEventListener("click", async (e) => {
   });
   const data = await res.json();
   if (!data.success) {
+    for (let i = 0; i < numbers.length; i++) {
+      numbers[i].value = "";
+      numbers[i].disabled = false;
+    }
+    pinSubmitButton.disabled = false;
+    pinSubmitButton.innerHTML = "Submit";
     message.innerHTML = data.message;
+    numbers[0].focus();
+    return;
   }
   if (data.success) {
     inputPinForm.style.display = "none";
@@ -114,6 +135,9 @@ updatePasswordButton.addEventListener("click", async (e) => {
     message.innerHTML = "Password should be 8 characters long";
     return;
   }
+  newPassword.disabled = true;
+  updatePasswordButton.disabled = true;
+  updatePasswordButton.innerHTML = '<div id="loader"></div>';
   const res = await fetch(`${mainUrl}update-password`, {
     method: "POST",
     headers: {

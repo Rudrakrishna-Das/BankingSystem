@@ -12,6 +12,10 @@ const mainURL = "https://banking-system-backend-kmjs.onrender.com/";
 signIn.addEventListener("click", async (e) => {
   e.preventDefault();
   err.innerHTML = "";
+  signIn.innerHTML = '<div id="loader"></div>';
+  signIn.disabled = true;
+  email.disabled = true;
+  password.disabled = true;
   const formData = {
     email: email.value.trim(),
     password: password.value.trim(),
@@ -29,6 +33,10 @@ signIn.addEventListener("click", async (e) => {
 
   if (!data.success) {
     err.innerHTML = data.message;
+    signIn.innerHTML = "Sign In";
+    signIn.disabled = false;
+    email.disabled = false;
+    password.disabled = false;
   }
   if (data.success) {
     const dynamicURL = `/user/index.html`;
