@@ -149,14 +149,14 @@ depositButton.addEventListener("click", async (e) => {
   withdrawMessage.innerHTML = "";
   transferMessage.innerHTML = "";
 
-  if (
-    depositValue.value.includes("+") ||
-    depositValue.value.includes("-") ||
-    +depositValue.value < 1
-  ) {
-    depositMessage.innerHTML = "Value should be minimum 1";
-    return;
-  }
+  // if (
+  //   depositValue.value.includes("+") ||
+  //   depositValue.value.includes("-") ||
+  //   +depositValue.value < 1
+  // ) {
+  //   depositMessage.innerHTML = "Value should be minimum 1";
+  //   return;
+  // }
 
   if (depositValue.value.trim().length == 0) {
     depositMessage.innerHTML = "Cannot leave blank!";
