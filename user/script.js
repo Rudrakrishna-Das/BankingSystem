@@ -148,6 +148,16 @@ depositButton.addEventListener("click", async (e) => {
   depositMessage.innerHTML = "";
   withdrawMessage.innerHTML = "";
   transferMessage.innerHTML = "";
+
+  if (
+    depositValue.value.includes("+") ||
+    depositValue.value.includes("-") ||
+    +depositValue.value < 1
+  ) {
+    depositMessage.innerHTML = "Value should be minimum 1";
+    return;
+  }
+
   if (depositValue.value.trim().length == 0) {
     depositMessage.innerHTML = "Cannot leave blank!";
   } else {
@@ -173,6 +183,16 @@ withdrawButton.addEventListener("click", async (e) => {
   depositMessage.innerHTML = "";
   withdrawMessage.innerHTML = "";
   transferMessage.innerHTML = "";
+
+  if (
+    withdrawValue.value.includes("+") ||
+    withdrawValue.value.includes("-") ||
+    +withdrawValue.value < 1
+  ) {
+    withdrawMessage.innerHTML = "Value should be minimum 1";
+    return;
+  }
+
   if (withdrawValue.value.trim().length == 0) {
     withdrawMessage.innerHTML = "Cannot leave blank!";
   } else {
@@ -202,6 +222,16 @@ transferButton.addEventListener("click", async (e) => {
   depositMessage.innerHTML = "";
   withdrawMessage.innerHTML = "";
   transferMessage.innerHTML = "";
+
+  if (
+    transferValue.value.includes("+") ||
+    transferValue.value.includes("-") ||
+    +transferValue.value < 1
+  ) {
+    transferMessage.innerHTML = "Value should be minimum 1";
+    return;
+  }
+
   if (
     transferValue.value.trim().length == 0 ||
     transferAccount.value.trim().length == 0
