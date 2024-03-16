@@ -89,7 +89,7 @@ main {
   border: none;
   background-color: var(--yellow);
   color: var(--blue);
-  font-size: 20px;
+  font-size: 1em;
   font-weight: 800;
   transition: all 0.5s ease-in-out;
 }
@@ -203,6 +203,9 @@ main p a:hover {
   #sign_up_form input {
     width: 94%;
   }
+  main p {
+    font-size: 18px;
+  }
 }
 
 @media screen and (max-width: 481px) {
@@ -218,6 +221,9 @@ main p a:hover {
 @media screen and (max-width: 390px) {
   #sign_up_form input {
     width: 92%;
+  }
+  main p {
+    font-size: 12px;
   }
 }
 
