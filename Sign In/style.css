@@ -9,6 +9,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: "Truculenta", sans-serif;
   scroll-behavior: smooth;
 }
 body {
@@ -106,15 +107,19 @@ main {
   background-color: gray;
 }
 main p {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 400;
+  letter-spacing: 2px;
   color: var(--yellow);
+  transition: all 0.5s ease-in-out;
 }
 
 main p a {
   color: rgb(0, 255, 0);
-  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 1px;
   text-decoration: none;
+  transition: all 0.5s ease-in-out;
 }
 
 main p a:hover {
@@ -123,8 +128,8 @@ main p a:hover {
 
 #forgot_password {
   color: var(--yellow);
-  display: inline;
   font-size: 20px;
+  width: 40%;
   margin-left: 8px;
   text-decoration: none;
 }
@@ -214,7 +219,10 @@ main p a:hover {
     width: 94%;
   }
   main p {
-    font-size: 18px;
+    font-size: 15px;
+  }
+  main p a {
+    font-size: 20px;
   }
   #forgot_password {
     font-size: 15px;
@@ -236,7 +244,10 @@ main p a:hover {
     width: 92%;
   }
   main p {
-    font-size: 12px;
+    font-size: 10px;
+  }
+  main p a {
+    font-size: 15px;
   }
   #forgot_password {
     font-size: 10px;

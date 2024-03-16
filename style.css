@@ -21,6 +21,7 @@
   max-width: 98%;
   position: sticky;
   top: 0;
+  font-family: "Truculenta", sans-serif;
 }
 
 .welcome_message {
@@ -63,6 +64,7 @@ li a:hover {
   font-weight: 800;
   background-color: var(--yellow);
   color: var(--blue);
+  font-family: "Truculenta", sans-serif;
   transition: all 0.5s ease-in;
 }
 
@@ -95,21 +97,27 @@ li a:hover {
   text-align: justify;
   background-color: var(--blue);
   color: var(--yellow);
+  font-family: "Truculenta", sans-serif;
   transition: all 0.5s ease-in;
 }
 .about_part {
-  max-width: 70%;
+  max-width: 90%;
   margin: 0 auto;
+  transition: all 0.5s ease-in;
 }
 .about h1 {
   text-align: center;
+  text-decoration: underline;
   margin-bottom: 2rem;
-  font-size: 40px;
+  font-size: 6vw;
   font-weight: 900;
+  transition: all 0.5s ease-in;
 }
 .about p {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1.5vw;
+  color: rgb(247, 245, 244);
+  letter-spacing: 1.5px;
+  transition: all 0.5s ease-in;
 }
 
 /* CONTACT */
@@ -117,6 +125,7 @@ li a:hover {
   background-color: var(--yellow);
   color: var(--blue);
   font-weight: 600;
+  font-family: sans-serif;
 }
 
 .contact {
@@ -125,6 +134,7 @@ li a:hover {
   align-items: center;
   height: 10rem;
   padding: 8rem 1rem;
+
   transition: all 0.5s ease-in-out;
 }
 .contact_form {
@@ -144,7 +154,7 @@ li a:hover {
 }
 
 .contact_form input {
-  margin-left: 26px;
+  margin-left: 35px;
   padding: 6px;
   width: 20rem;
   height: 1.5rem;
@@ -168,6 +178,8 @@ li a:hover {
   background-color: var(--blue);
   color: var(--yellow);
   font-weight: 800;
+  font-family: "Truculenta", sans-serif;
+  letter-spacing: 1.5px;
   padding: 10px 0;
 }
 .logo {
