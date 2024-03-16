@@ -90,13 +90,12 @@ main {
   border: none;
   background-color: var(--yellow);
   color: var(--blue);
-  font-size: 1em;
+  font-size: 1.3em;
   font-weight: 800;
   transition: all 0.5s ease-in-out;
 }
 #sign_in_form_button:hover {
   background-color: var(--darkorange);
-  transform: scaleY(1.1);
 }
 #sign_in_form_button:disabled {
   cursor: not-allowed;
@@ -180,8 +179,8 @@ main p a:hover {
   font-size: 15px;
   width: 20px;
   position: absolute;
-  top: 4.8rem;
-  right: 3%;
+  top: 4.6rem;
+  right: 2.5%;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
